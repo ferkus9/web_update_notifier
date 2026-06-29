@@ -61,6 +61,7 @@ def ejecutar_revision():
             f.write(nueva_firma)
     else:
         print("La página no ha sufrido ningún cambio. Todo sigue igual.")
+        enviar_mensaje_telegram("🔍 Revisión rutinaria: El refugio sigue sin cambios. Todo en orden. 👍")
 
 if __name__ == "__main__":
     ejecutar_revision()
