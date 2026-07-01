@@ -32,7 +32,15 @@ def ejecutar_revision():
     if not nueva_firma:
         print("No se pudo obtener la firma de la página web.")
         return
-
+        
+    # 👇 NUEVA LÍNEA PARA DEBUG: Imprime los primeros 500 caracteres en el log
+    # Esto te ayudará a ver si hay fechas, horas o IDs dinámicos arriba del todo
+    respuesta = requests.get(URL)
+    texto_pagina = respuesta.text
+    print("--- MUESTRA DEL TEXTO OBTENIDO ---")
+    print(texto_pagina[:1000]) 
+    print("----------------------------------")
+    
     # Comprobamos si el artefacto descargado existe en el sistema de archivos
     firma_guardada = ""
     if os.path.exists(ARCHIVO_HASH):
