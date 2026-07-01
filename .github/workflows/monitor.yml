@@ -20,15 +20,25 @@ jobs:
     - name: Instalar librerías
       run: pip install requests
 
-    # Usamos la caché de GitHub que es silenciosa y no genera errores visuales
+# 1. Intentar recuperar el archivo de la caché usando la hora actual como clave dinámica
     - name: Recuperar caché del Hash
       uses: actions/cache@v3
       with:
         path: ultimo_hash_refugio.txt
-        key: hash-refugio-cache
+        key: hash-refugio-${{ github.run_id }}
+        restore-keys: |
+          hash-refugio-
 
     - name: Ejecutar script de control
       env:
         TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: python check_refugio.py
+
+    # 2. OBLIGATORIO: Guardar el archivo modificado en la caché antes de terminar
+    - name: Guardar nuevo Hash en caché
+      uses: actions/cache/save@v3
+      if: always()
+      with:
+        path: ultimo_hash_refugio.txt
+        key: hash-refugio-${{ github.run_id }}
