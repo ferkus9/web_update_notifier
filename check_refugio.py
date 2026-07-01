@@ -2,7 +2,7 @@ import requests
 import hashlib
 import os
 
-URL = "https://refugedesoulettesdegaube.ffcam.fr/"
+URL = "https://refugeoulettesdegaube.ffcam.fr/"
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
