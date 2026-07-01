@@ -38,9 +38,9 @@ def ejecutar_revision():
     respuesta = requests.get(URL)
     texto_pagina = respuesta.text
     print("--- MUESTRA DEL TEXTO OBTENIDO ---")
-    print(texto_pagina[:1000]) 
+    print(texto_pagina) 
     print("----------------------------------")
-    
+    print(f"El nuevo has es: {nueva_firma}")
     # Comprobamos si el artefacto descargado existe en el sistema de archivos
     firma_guardada = ""
     if os.path.exists(ARCHIVO_HASH):
